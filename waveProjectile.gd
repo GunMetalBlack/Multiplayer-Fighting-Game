@@ -19,9 +19,16 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _on_hit_box_area_entered(hitBox):
+@rpc("any_peer","call_local")
+func deleteProjectileRpc():
+	queue_free()
+
+
+
+
+func _on_wave_hit_box_area_entered(hitBox):
 	if not is_multiplayer_authority(): return
-	var hit_player = hitBox.get_parent()
-	hit_player.onHitForce.rpc_id(hit_player.get_multiplayer_authority())
-
-
+	var hit_name = hitBox.namep;
+	if hit_name == "PlayerHitBox":
+		print(hit_name)
+		deleteProjectileRpc.rpc()
