@@ -45,8 +45,8 @@ rotation = 2.35619
 sprite_frames = SubResource("SpriteFrames_ctub0")
 
 [node name="WaveHitBox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WaveHitBox"]
 scale = Vector2(0.59, 0.8)
@@ -56,4 +56,4 @@ shape = SubResource("CircleShape2D_mip45")
 replication_config = SubResource("SceneReplicationConfig_1ps6p")
 
 [connection signal="area_entered" from="WaveHitBox" to="." method="_on_wave_hit_box_area_entered"]
-[connection signal="area_shape_entered" from="WaveHitBox" to="." method="_on_wave_hit_box_area_shape_entered"]
+[connection signal="body_entered" from="WaveHitBox" to="." method="_on_wave_hit_box_body_entered"]

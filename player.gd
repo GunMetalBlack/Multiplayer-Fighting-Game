@@ -47,7 +47,7 @@ func _physics_process(delta):
 			if direction:
 				velocity.x = direction * speed
 			else:
-				velocity.x = move_toward(velocity.x, 0, speed)
+				velocity.x = move_toward(velocity.x, 0, 5)
 		move_and_slide()
 @rpc("any_peer","call_local")
 func fire():
@@ -55,11 +55,10 @@ func fire():
 	w.global_position = $WeaponRotation/WaveSpawn.global_position
 	w.rotation_degrees = $WeaponRotation.rotation_degrees
 	get_tree().root.add_child(w)
-
+	
 @rpc("any_peer","call_local")
 func doDash():
 	dash.start_dash(sprite,dash_duration)
-
 
 	
 	
