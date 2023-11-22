@@ -27,10 +27,7 @@ func deleteProjectileRpc():
 
 
 func _on_wave_hit_box_area_entered(hitBox):
-	if not is_multiplayer_authority(): return
-	var hit_name = hitBox.name;
-	if hit_name == "PlayerHitBox":
-		print(hit_name)
+		if not is_multiplayer_authority(): return
 		deleteProjectileRpc.rpc()
 
 
@@ -42,3 +39,7 @@ func _on_wave_hit_box_body_entered(body):
 	var hit_name = body.name;
 	if hit_name == "Ground":
 		deleteProjectileRpc.rpc()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	deleteProjectileRpc.rpc()

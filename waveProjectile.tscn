@@ -55,5 +55,8 @@ shape = SubResource("CircleShape2D_mip45")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_1ps6p")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="area_entered" from="WaveHitBox" to="." method="_on_wave_hit_box_area_entered"]
 [connection signal="body_entered" from="WaveHitBox" to="." method="_on_wave_hit_box_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

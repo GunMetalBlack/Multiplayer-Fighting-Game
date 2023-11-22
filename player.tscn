@@ -75,16 +75,16 @@ rotation = 0.0480109
 
 [node name="Sprite2D" type="Sprite2D" parent="WeaponRotation"]
 texture_filter = 1
-position = Vector2(12.6536, 2.89606)
+position = Vector2(13.2478, -0.381328)
 rotation = 0.731655
 texture = SubResource("AtlasTexture_8ep1u")
 
 [node name="WaveSpawn" type="Node2D" parent="WeaponRotation"]
-position = Vector2(22.1186, 1.94071)
+position = Vector2(22.7128, -1.33668)
 
 [node name="dash" parent="." instance=ExtResource("3_03yf5")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_keddx")
 
-[connection signal="area_entered" from="PlayerHitBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_entered" from="PlayerHitBox" to="." method="_on_player_hit_box_area_entered"]

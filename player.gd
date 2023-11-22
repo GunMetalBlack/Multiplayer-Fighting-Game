@@ -3,7 +3,7 @@ extends CharacterBody2D
 const JUMP_VELOCITY = -400.0
 const dash_duration = 0.2
 const dash_speed = 900
-
+var bulletImpactVelocity = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var dash = $dash
@@ -45,8 +45,14 @@ func _physics_process(delta):
 		else:
 			var direction = Input.get_axis("ui_left", "ui_right")
 			if direction:
-				velocity.x = direction * speed
+				velocity.x = direction * speed 
 			else:
+				if bulletImpactVelocity < 0:
+					velocity.x = move_toward(velocity.x, bulletImpactVelocity, -bulletImpactVelocity)
+					bulletImpactVelocity = bulletImpactVelocity + 10
+				elif bulletImpactVelocity > 0:
+					velocity.x = move_toward(velocity.x, bulletImpactVelocity, bulletImpactVelocity)
+					bulletImpactVelocity = bulletImpactVelocity - 10
 				velocity.x = move_toward(velocity.x, 0, 5)
 		move_and_slide()
 @rpc("any_peer","call_local")
@@ -60,6 +66,13 @@ func fire():
 func doDash():
 	dash.start_dash(sprite,dash_duration)
 
-	
-	
 
+func _on_player_hit_box_area_entered(hitBox):
+	var hit_name = hitBox.name;
+	if hit_name == "WaveHitBox" && !dash.is_dashing():
+		print(hitBox.get_parent().transform.x[0])
+		if hitBox.get_parent().transform.x[0] > 0:
+			bulletImpactVelocity = 500
+		else:
+			bulletImpactVelocity = -500
+		
