@@ -38,6 +38,7 @@ script = ExtResource("1_3tolc")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.54, 0.755)
 shape = SubResource("CircleShape2D_mip45")
+disabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

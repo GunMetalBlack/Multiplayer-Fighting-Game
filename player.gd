@@ -13,11 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == 1:
-		var new_color = Color(1.0, 0.0, 0.0, 1.0)
-		sprite.modulate = new_color
-	else:
-		var new_color = Color(0.0, 0.0, 5.0, 1.0)
-		sprite.modulate = new_color
+		sprite.frame = 1
 func _physics_process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		var speed = dash_speed if dash.is_dashing() else 300.0
@@ -76,3 +72,8 @@ func _on_player_hit_box_area_entered(hitBox):
 		else:
 			bulletImpactVelocity = -500
 		
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited():
+	position = Vector2(600,200)
+

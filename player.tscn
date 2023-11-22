@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://be7dtiycyqqdo"]
+[gd_scene load_steps=12 format=3 uid="uid://be7dtiycyqqdo"]
 
 [ext_resource type="Texture2D" uid="uid://bfqic6q4e240k" path="res://16x16_Jerom_CC-BY-SA-3.0.png" id="1_1hku1"]
 [ext_resource type="Script" path="res://player.gd" id="1_kg056"]
@@ -9,11 +9,18 @@
 atlas = ExtResource("1_1hku1")
 region = Rect2(96, 304, 16, 16)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_76j3p"]
+atlas = ExtResource("1_1hku1")
+region = Rect2(80, 304, 16, 16)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_vt12k"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5b2hy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76j3p")
 }],
 "loop": true,
 "name": &"default",
@@ -87,4 +94,7 @@ position = Vector2(22.7128, -1.33668)
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_keddx")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="area_entered" from="PlayerHitBox" to="." method="_on_player_hit_box_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
