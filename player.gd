@@ -12,7 +12,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
-	if $MultiplayerSynchronizer.get_multiplayer_authority() == 1:
+	if $MultiplayerSynchronizer.get_multiplayer_authority() != multiplayer.get_unique_id():
 		sprite.frame = 1
 func _physics_process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
@@ -49,7 +49,7 @@ func _physics_process(delta):
 				elif bulletImpactVelocity > 0:
 					velocity.x = move_toward(velocity.x, bulletImpactVelocity, bulletImpactVelocity)
 					bulletImpactVelocity = bulletImpactVelocity - 10
-				velocity.x = move_toward(velocity.x, 0, 5)
+				velocity.x = move_toward(velocity.x, 0, 9)
 		move_and_slide()
 @rpc("any_peer","call_local")
 func fire():
@@ -66,7 +66,7 @@ func doDash():
 func _on_player_hit_box_area_entered(hitBox):
 	var hit_name = hitBox.name;
 	if hit_name == "WaveHitBox" && !dash.is_dashing():
-		print(hitBox.get_parent().transform.x[0])
+		print("welp")
 		if hitBox.get_parent().transform.x[0] > 0:
 			bulletImpactVelocity = 500
 		else:
@@ -76,4 +76,5 @@ func _on_player_hit_box_area_entered(hitBox):
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	position = Vector2(600,200)
+	pass
 

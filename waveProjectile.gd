@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 500.0
+const SPEED = 800.0
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -18,28 +18,31 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	move_and_slide()
 
-
 @rpc("any_peer","call_local")
-func deleteProjectileRpc():
+func deleteRPC():
 	queue_free()
 
-
-
-
 func _on_wave_hit_box_area_entered(hitBox):
-		if not is_multiplayer_authority(): return
-		deleteProjectileRpc.rpc()
+		if multiplayer.is_server():
+			queue_free()
+			deleteRPC.rpc()
+			print("WTF")
 
 
 		
 
 
 func _on_wave_hit_box_body_entered(body):
-	if not is_multiplayer_authority(): return
 	var hit_name = body.name;
 	if hit_name == "Ground":
-		deleteProjectileRpc.rpc()
+		if multiplayer.is_server():
+			queue_free()
+			deleteRPC.rpc()
+			print("WTF")
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	deleteProjectileRpc.rpc()
+		if multiplayer.is_server():
+			queue_free()
+			deleteRPC.rpc()
+			print("WTF")
