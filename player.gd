@@ -77,4 +77,3 @@ func _on_player_hit_box_area_entered(hitBox):
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	position = Vector2(600,200)
 	pass
-

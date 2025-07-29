@@ -1,7 +1,7 @@
 extends Control
 
 #64.20.63.154
-@export var Address = "64.20.63.154"
+@export var Address = "127.0.0.1"
 @export var port = 8910
 var peer
 # Called when the node enters the scene tree for the first time.
@@ -26,10 +26,6 @@ func hostGame():
 	print("WAITING FOR PLAYERS!")
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 #this gets called on the server and client
 func peer_connected(id):

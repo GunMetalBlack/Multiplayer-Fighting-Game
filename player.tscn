@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://be7dtiycyqqdo"]
 
 [ext_resource type="Texture2D" uid="uid://bfqic6q4e240k" path="res://16x16_Jerom_CC-BY-SA-3.0.png" id="1_1hku1"]
-[ext_resource type="Script" path="res://player.gd" id="1_kg056"]
+[ext_resource type="Script" uid="uid://c0cdn6td86nki" path="res://player.gd" id="1_kg056"]
 [ext_resource type="PackedScene" uid="uid://cspwypj5gcqgp" path="res://waveProjectile.tscn" id="2_uyxcu"]
 [ext_resource type="PackedScene" uid="uid://cbovt48tp2mgj" path="res://dash.tscn" id="3_03yf5"]
 
@@ -40,16 +40,13 @@ region = Rect2(97.3055, 208.813, 14.2199, 15.2732)
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_keddx"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
+properties/0/replication_mode = 1
 properties/1/path = NodePath("WeaponRotation:position")
 properties/1/spawn = true
-properties/1/sync = true
-properties/1/watch = false
+properties/1/replication_mode = 1
 properties/2/path = NodePath("WeaponRotation:rotation")
 properties/2/spawn = true
-properties/2/sync = true
-properties/2/watch = false
+properties/2/replication_mode = 1
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(0, -23)

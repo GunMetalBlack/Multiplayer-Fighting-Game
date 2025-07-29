@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cspwypj5gcqgp"]
 
-[ext_resource type="Script" path="res://waveProjectile.gd" id="1_3tolc"]
+[ext_resource type="Script" uid="uid://sbvtqqcr83my" path="res://waveProjectile.gd" id="1_3tolc"]
 [ext_resource type="Texture2D" uid="uid://bfqic6q4e240k" path="res://16x16_Jerom_CC-BY-SA-3.0.png" id="1_45baa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mip45"]
@@ -24,12 +24,10 @@ animations = [{
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_1ps6p"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
-properties/0/sync = true
-properties/0/watch = false
+properties/0/replication_mode = 1
 properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
-properties/1/sync = true
-properties/1/watch = false
+properties/1/replication_mode = 1
 
 [node name="Node2D" type="CharacterBody2D"]
 scale = Vector2(2, 2)

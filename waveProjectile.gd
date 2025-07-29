@@ -26,7 +26,7 @@ func _on_wave_hit_box_area_entered(hitBox):
 		if multiplayer.is_server():
 			queue_free()
 			deleteRPC.rpc()
-			print("WTF")
+			
 
 
 		
@@ -38,11 +38,11 @@ func _on_wave_hit_box_body_entered(body):
 		if multiplayer.is_server():
 			queue_free()
 			deleteRPC.rpc()
-			print("WTF")
+			
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 		if multiplayer.is_server():
 			queue_free()
 			deleteRPC.rpc()
-			print("WTF")
+			
